@@ -22,10 +22,12 @@ import { useAuthInitialize } from './utilities/hooks/useAuthInitialize';
 import ForgotPassword from './pages/auth/ForgotPassword';
 import ChangePassword from './pages/auth/ChangePassword';
 import AdminDashBoard from './pages/AdminPages/AdminDashBoard';
-import BuyTicket from './pages/UserPages/BuyTicket';
-import MySelling from './pages/UserPages/MySelling';
+import BookTicket from './pages/UserPages/BookTicket';
 import MyTickets from './pages/UserPages/MyTickets';
+import SellTicket from './pages/UserPages/SellTicket';
 import ResaleTickets from './pages/UserPages/ResaleTickets';
+import CurrentlySelling from './pages/UserPages/CurrentlySelling';
+import SoldTickets from './pages/UserPages/SoldTickets';
 const App = () => {
   const { isLoading: authInitLoading } = useAuthInitialize();
   const { user, isAuthenticated, isLoading } = useSelector((state) => state.auth);
@@ -50,13 +52,17 @@ const App = () => {
             <Route path='change-password' element={<ChangePassword/>}/>
           </Route>
           <Route path="/user" element={<TaskLayout />}>
-            <Route path='home' element={<BuyTicket/>} />
+            <Route path='home' element={<BookTicket/>} />
             <Route path='profile' element={<UserProfile/>} />
             <Route path='set-new-password' element={<SetNewPassword/>} />
-            <Route path='MySelling' element={<MySelling/>}/>
+            <Route path='SellTicket' element={<SellTicket/>}/>
             <Route path='MyTickets' element={<MyTickets/>}/>
             <Route path='ResaleTickets' element={<ResaleTickets/>}/>
+            <Route path='CurrentlySelling' element={<CurrentlySelling/>}/>
+            <Route path='CurrentlySelling' element={<CurrentlySelling/>}/>
+            <Route path='sold-tickets' element={<SoldTickets/>}/>
             </Route>
+
             <Route path='/admin' element={<AdminLayout/>}>
               <Route path='dashboard' element={<AdminDashBoard/>} />
               <Route path='profile' element={<AdminProfile/>} />

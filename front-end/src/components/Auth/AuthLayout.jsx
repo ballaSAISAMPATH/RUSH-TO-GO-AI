@@ -8,7 +8,7 @@ const AuthLayout = () => {
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Header */}
-      <div className="fixed top-0 left-0 right-0 z-40 bg-black border-b-2 border-cyan-500 py-3">
+      <div className="fixed top-0 left-0 right-0 z-40 bg-black border-cyan-500 border-b-2 shadow-[0_0_15px_2px_rgba(34,211,238,0.8)] py-3">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             {/* Back button */}

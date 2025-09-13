@@ -76,7 +76,7 @@ const UserHeader = () => {
   const weeklyProgress = stats?.overallCompletionRate || 0;
 
   return (
-    <header className="fixed top-0 w-full bg-black backdrop-blur-md border-b border-white z-50">
+    <header className="fixed top-0 w-full bg-black backdrop-blur-md border-b-2 shadow-[0_0_15px_2px_rgba(34,211,238,0.8)] border-cyan-500 z-50">
       <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center space-x-3 cursor-pointer" onClick={() => navigate('/')}>

@@ -130,7 +130,7 @@ const CurrentlySelling = () => {
                         <p className="font-semibold text-white">{ticket.movieTitle}</p>
                       </div>
                     </div>
-                    
+
                     <div className="flex items-center gap-3">
                       <MapPin size={20} className="text-gray-400" />
                       <div>
@@ -138,7 +138,7 @@ const CurrentlySelling = () => {
                         <p className="font-semibold text-white">{ticket.theaterName}</p>
                       </div>
                     </div>
-                    
+
                     <div className="flex items-center gap-3">
                       <Clock size={20} className="text-gray-400" />
                       <div>
@@ -154,7 +154,7 @@ const CurrentlySelling = () => {
                         </p>
                       </div>
                     </div>
-                    
+
                     <div className="flex items-center gap-3">
                       <DollarSign size={20} className="text-gray-400" />
                       <div>
@@ -210,7 +210,7 @@ const CurrentlySelling = () => {
                   <br />
                   This action cannot be undone.
                 </p>
-                
+
                 {/* Ticket Details */}
                 <div className="w-full bg-gray-800 p-4 rounded-lg mb-6 text-left border border-gray-700">
                   <p className="text-cyan-400 font-bold text-lg mb-2">{ticketToDelete?.movieTitle}</p>

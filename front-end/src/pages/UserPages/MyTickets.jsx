@@ -38,7 +38,7 @@ const MyTickets = () => {
         {isLoading ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {Array.from({ length: 3 }).map((_, index) => (
-              <div 
+              <div
                 key={index}
                 className="bg-gray-800 rounded-xl p-6 border border-gray-700 animate-pulse"
               >
@@ -61,8 +61,8 @@ const MyTickets = () => {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {tickets.map((ticket, index) => (
-              <div 
-                key={ticket._id} 
+              <div
+                key={ticket._id}
                 className="group relative rounded-2xl p-0.5 overflow-hidden transition-all duration-500 transform hover:scale-[1.02] hover:shadow-2xl"
                 style={{ animationDelay: `${index * 50}ms` }}
               >
@@ -79,7 +79,7 @@ const MyTickets = () => {
                       Booked
                     </div>
                   </div>
-                  
+
                   <div className="space-y-4 text-sm flex-grow">
                     <div className="flex items-center gap-3">
                       <MapPin size={20} className="text-gray-400 transition-colors duration-300 group-hover:text-cyan-400" />
@@ -88,7 +88,7 @@ const MyTickets = () => {
                         <p className="font-semibold text-white">{ticket.theaterName}</p>
                       </div>
                     </div>
-                    
+
                     <div className="flex items-center gap-3">
                       <Clock size={20} className="text-gray-400 transition-colors duration-300 group-hover:text-cyan-400" />
                       <div>
@@ -104,7 +104,7 @@ const MyTickets = () => {
                         </p>
                       </div>
                     </div>
-                    
+
                     <div className="flex items-center gap-3">
                       <Star size={20} className="text-gray-400 transition-colors duration-300 group-hover:text-cyan-400" />
                       <div>
@@ -112,7 +112,7 @@ const MyTickets = () => {
                         <p className="font-semibold text-white">{ticket.seatNumber}</p>
                       </div>
                     </div>
-                    
+
                     <div className="flex items-center gap-3">
                       <DollarSign size={20} className="text-gray-400 transition-colors duration-300 group-hover:text-cyan-400" />
                       <div>
@@ -121,7 +121,7 @@ const MyTickets = () => {
                       </div>
                     </div>
                   </div>
-                  
+
                   {/* {ticket.qrCode && (
                     <div className="mt-6 border-t border-gray-700 pt-4 text-center">
                       <p className="text-gray-400 mb-2">Scan for entry:</p>

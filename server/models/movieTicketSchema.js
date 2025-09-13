@@ -10,8 +10,8 @@ const movieTicketSchema = new mongoose.Schema({
     required: true
   },
   showTime: {
-    type: String, // exact show date & time
-    required: true
+    type: Date, // exact show date & time
+    default: Date.now(),
   },
   seatNumber: {
     type: String,

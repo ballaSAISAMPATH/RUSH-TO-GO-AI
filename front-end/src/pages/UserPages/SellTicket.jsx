@@ -33,9 +33,9 @@ const SellTicket = () => {
     try {
       setIsLoading(true);
       const response = await axios.get(`http://localhost:5000/api/ticket/booked/${user?.id}`);
-      const availableForSale = response.data.filter(ticket => 
-        ticket.status === 'sold' && 
-        !ticket.isForSale && 
+      const availableForSale = response.data.filter(ticket =>
+        ticket.status === 'sold' &&
+        !ticket.isForSale &&
         new Date(ticket.showTime) > new Date()
       );
       setBookedTickets(availableForSale);
@@ -69,7 +69,7 @@ const SellTicket = () => {
       setIsListing(false);
     }
   };
-  
+
   const getSelectedTicketDetails = () => {
     return bookedTickets.find(ticket => ticket._id === selectedTicket);
   };
@@ -130,7 +130,7 @@ const SellTicket = () => {
                 {getSelectedTicketDetails() && (
                   <div className="space-y-4">
                     <h3 className="text-xl font-bold text-white mb-2">{getSelectedTicketDetails().movieTitle}</h3>
-                    
+
                     <div className="grid grid-cols-2 gap-4 text-sm">
                       <div className="flex items-center gap-2">
                         <MapPin size={16} className="text-cyan-400" />

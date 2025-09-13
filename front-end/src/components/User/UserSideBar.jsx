@@ -87,7 +87,7 @@ const UserSideBar = () => {
   const weeklyProgress = stats?.overallCompletionRate || 0;
 
   return (
-    <aside className="hidden md:flex fixed left-0 top-16 h-[calc(100vh-4rem)] w-64 bg-white/95 backdrop-blur-md border-r border-gray-200 z-40 flex-col justify-between">
+    <aside className="hidden md:flex fixed left-0 top-16 h-[calc(100vh-4rem)] w-64 bg-black backdrop-blur-md border-r border-white z-40 flex-col justify-between">
       <div className="p-6">
         <nav className="space-y-2">
           {menuItems.map((item) => {
@@ -100,36 +100,36 @@ const UserSideBar = () => {
                 onClick={() => navigate(item.path)}
                 className={` cursor-pointer w-full group flex items-center space-x-3 px-3 py-3 rounded-lg transition-all duration-300 text-left ${
                   isActive
-                    ? 'bg-gradient-to-r from-green-500 to-[#8FE877] text-white shadow-lg shadow-green-500/25 transform scale-[1.02]'
-                    : 'text-gray-700 hover:text-green-500 hover:bg-green-500/5 hover:translate-x-1'
+                    ? 'bg-gradient-to-r from-cyan-500 to-cyan-200 text-black shadow-lg shadow-cyan-500/25 transform scale-[1.02]'
+                    : 'text-white hover:text-cyan-500 hover:bg-cyan-500/5 hover:translate-x-1'
                 }`}
               >
                 <div
                   className={`p-1.5 rounded-md transition-colors duration-300 ${
                     isActive
                       ? 'bg-white/20'
-                      : 'bg-gray-100 group-hover:bg-green-500/10'
+                      : 'bg-white group-hover:bg-cyan-500/10'
                   }`}
                 >
                   <Icon
                     className={`w-4 h-4 transition-colors duration-300 ${
                       isActive
-                        ? 'text-white'
-                        : 'text-gray-600 group-hover:text-green-500'
+                        ? 'text-black'
+                        : 'text-black group-hover:text-cyan-500'
                     }`}
                   />
                 </div>
                 <div className="flex-1">
                   <div
                     className={`font-medium text-sm ${
-                      isActive ? 'text-white' : 'text-gray-900'
+                      isActive ? 'text-white' : 'text-white'
                     }`}
                   >
                     {item.label}
                   </div>
                   <div
                     className={`text-xs ${
-                      isActive ? 'text-white/80' : 'text-gray-500'
+                      isActive ? 'text-white/80' : 'text-white'
                     }`}
                   >
                     {item.description}
@@ -146,7 +146,7 @@ const UserSideBar = () => {
       
       </div>
 
-      <div className="p-6 border-t border-gray-200">
+      <div className="p-6 border-t border-white">
         <button
           onClick={handleLogout}
           className="w-full group flex items-center space-x-3 px-3 py-3 rounded-lg 

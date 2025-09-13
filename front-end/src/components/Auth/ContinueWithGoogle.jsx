@@ -16,10 +16,8 @@ const ContinueWithGoogle = () => {
   const handleGoogleLogin = async () => {
     try {
       setLoading(true);
-      
       const result = await signInWithPopup(auth, googleProvider);
       const user = result.user;
-      
       const idToken = await user.getIdToken();
       
       const userData = {
@@ -34,12 +32,9 @@ const ContinueWithGoogle = () => {
       
       if (response.success) {
         toast.success(response.message);
-       
       }
-      
     } catch (error) {
       console.error('Google login error:', error);
-      
       if (error.code === 'auth/popup-closed-by-user') {
         toast.error('Sign-in was cancelled');
       } else if (error.code === 'auth/popup-blocked') {
@@ -58,10 +53,10 @@ const ContinueWithGoogle = () => {
         type="button"
         onClick={handleGoogleLogin}
         disabled={loading || isLoading}
-        className="w-full flex items-center justify-center gap-3 py-3 px-4 border-2 cursor-pointer border-green-500 rounded-lg shadow-sm bg-white hover:bg-green-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-sm font-medium"
+        className="w-full flex items-center justify-center gap-3 py-3 px-4 border-2 border-cyan-500 rounded-lg shadow-sm bg-black hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-sm font-medium"
       >
         {loading || isLoading ? (
-          <div className="w-5 h-5 border-2 border-green-300 border-t-green-500 rounded-full animate-spin"></div>
+          <div className="w-5 h-5 border-2 border-gray-700 border-t-cyan-500 rounded-full animate-spin"></div>
         ) : (
           <svg className="w-5 h-5" viewBox="0 0 24 24">
             <path
@@ -82,7 +77,7 @@ const ContinueWithGoogle = () => {
             />
           </svg>
         )}
-        <span className="text-green-700">
+        <span className="text-cyan-500">
           {loading || isLoading ? 'Signing in...' : 'Continue with Google'}
         </span>
       </Button>

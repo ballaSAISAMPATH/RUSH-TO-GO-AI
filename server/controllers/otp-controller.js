@@ -55,7 +55,7 @@ const sendOTP = async (req, res) => {
           <div style="background-color: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
             <div style="text-align: center; margin-bottom: 30px;">
               <h1 style="color: #2563eb; margin: 0; font-size: 28px; font-weight: bold;">AI TaskFlow</h1>
-              <p style="color: #64748b; margin: 5px 0 0 0; font-size: 14px;">AI-Powered Task Management</p>
+              <p style="color: #64748b; margin: 5px 0 0 0; font-size: 14px;"> Task Management</p>
             </div>
             
             <h2 style="color: #334155; text-align: center; margin-bottom: 20px;">Email Verification</h2>
@@ -84,7 +84,7 @@ const sendOTP = async (req, res) => {
             
             <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e2e8f0;">
               <p style="color: #94a3b8; font-size: 12px; margin: 0;">
-                This email was sent by AI TaskFlow - AI-Powered Task Management System
+                This email was sent by AI TaskFlow -  Task Management System
               </p>
             </div>
           </div>
@@ -194,7 +194,7 @@ const resendOTP = async (req, res) => {
           <div style="background-color: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
             <div style="text-align: center; margin-bottom: 30px;">
               <h1 style="color: #2563eb; margin: 0; font-size: 28px; font-weight: bold;">AI TaskFlow</h1>
-              <p style="color: #64748b; margin: 5px 0 0 0; font-size: 14px;">AI-Powered Task Management</p>
+              <p style="color: #64748b; margin: 5px 0 0 0; font-size: 14px;"> Task Management</p>
             </div>
             
             <h2 style="color: #334155; text-align: center; margin-bottom: 20px;">Email Verification - Resent</h2>
@@ -223,7 +223,7 @@ const resendOTP = async (req, res) => {
             
             <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e2e8f0;">
               <p style="color: #94a3b8; font-size: 12px; margin: 0;">
-                This email was sent by AI TaskFlow - AI-Powered Task Management System
+                This email was sent by AI TaskFlow - Task Management System
               </p>
             </div>
           </div>

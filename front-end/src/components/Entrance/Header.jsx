@@ -27,9 +27,9 @@ const Header = () => {
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#demo" className="text-white hover:text-cyan-500 transition-colors duration-200">How It Works</a>
-            <a href="#reviews" className="text-white hover:text-cyan-500 transition-colors duration-200">Reviews</a>
+            <a href="#Theme" className="text-white hover:text-cyan-500 transition-colors duration-200">Theme</a>
             <a href="#stats" className="text-white hover:text-cyan-500 transition-colors duration-200">Stats</a>
+            <a href="#demo" className="text-white hover:text-cyan-500 transition-colors duration-200">How It Works</a>
             <a href="#features" className="text-white hover:text-cyan-500 transition-colors duration-200">Features</a>
             <a href="#contact" className="text-white hover:text-cyan-500 transition-colors duration-200">Contact Us</a>
             <button

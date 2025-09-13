@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Brain, Zap, TrendingUp, Home, BarChart3, User, Target, LogOut, Plus, CheckCircle, Clock, Edit, MessageSquare } from 'lucide-react';
+import { Ticket , Zap, TrendingUp, Home, BarChart3, User, Target, LogOut, Plus, CheckCircle, Clock, Edit, MessageSquare } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
@@ -82,7 +82,7 @@ const UserHeader = () => {
           <div className="flex items-center space-x-3 cursor-pointer" onClick={() => navigate('/')}>
             <div className="relative">
               <div className="w-10 h-10 bg-cyan-500 rounded-xl flex items-center justify-center transform rotate-12">
-                <Brain className="w-6 h-6 text-white" />
+                <Ticket  className="w-6 h-6 text-white" />
               </div>
               <div className="absolute -top-1 -right-1 w-3 h-3 bg-cyan-500 rounded-full animate-pulse"></div>
             </div>
@@ -117,7 +117,7 @@ const UserHeader = () => {
                   <SheetTitle className="flex items-center space-x-3">
                     <div className="relative">
                       <div className="w-10 h-10 bg-gradient-to-br from-cyan-500 to-cyan-400 rounded-xl flex items-center justify-center transform rotate-12 shadow-lg">
-                        <Brain className="w-5 h-5 text-white" />
+                        <Ticket  className="w-5 h-5 text-white" />
                       </div>
                       <div className="absolute -top-1 -right-1 w-3 h-3 bg-cyan-500 rounded-full animate-pulse shadow-sm"></div>
                     </div>

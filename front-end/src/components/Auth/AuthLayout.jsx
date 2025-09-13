@@ -27,7 +27,7 @@ const AuthLayout = () => {
                 </div>
                 <div>
                   <h1 className="text-3xl font-bold text-white">Rush-to-Go</h1>
-                  <p className="text-sm text-cyan-400">AI-Powered Ticket Resale</p>
+                      <div className="text-xs text-cyan-500 font-semibold">Movies · Anytime · Last Minute</div>
                 </div>
               </div>
             </div>
@@ -45,7 +45,7 @@ const AuthLayout = () => {
                 Seamless Last-Minute Tickets
               </h2>
               <p className="text-base lg:text-lg xl:text-xl text-gray-300 leading-relaxed">
-                Find, sell, and buy tickets effortlessly with AI-powered recommendations.
+                Find, sell, and buy tickets effortlessly with  recommendations.
               </p>
             </div>
 

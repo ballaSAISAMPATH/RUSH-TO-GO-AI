@@ -23,6 +23,9 @@ import ForgotPassword from './pages/auth/ForgotPassword';
 import ChangePassword from './pages/auth/ChangePassword';
 import AdminDashBoard from './pages/AdminPages/AdminDashBoard';
 import BuyTicket from './pages/UserPages/BuyTicket';
+import MySelling from './pages/UserPages/MySelling';
+import MyTickets from './pages/UserPages/MyTickets';
+import ResaleTickets from './pages/UserPages/ResaleTickets';
 const App = () => {
   const { isLoading: authInitLoading } = useAuthInitialize();
   const { user, isAuthenticated, isLoading } = useSelector((state) => state.auth);
@@ -33,6 +36,7 @@ const App = () => {
 
   return (
     <div>
+      
       <ScrollToTop />
       <CheckAuth isAuthenticated={isAuthenticated} user={user}>
         <Routes>
@@ -49,6 +53,9 @@ const App = () => {
             <Route path='home' element={<BuyTicket/>} />
             <Route path='profile' element={<UserProfile/>} />
             <Route path='set-new-password' element={<SetNewPassword/>} />
+            <Route path='MySelling' element={<MySelling/>}/>
+            <Route path='MyTickets' element={<MyTickets/>}/>
+            <Route path='ResaleTickets' element={<ResaleTickets/>}/>
             </Route>
             <Route path='/admin' element={<AdminLayout/>}>
               <Route path='dashboard' element={<AdminDashBoard/>} />

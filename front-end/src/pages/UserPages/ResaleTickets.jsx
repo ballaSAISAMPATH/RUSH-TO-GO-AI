@@ -22,7 +22,7 @@ const ResaleTickets = () => {
 
   const handleBuyTicket = async (ticketId) => {
     try {
-      await axios.post(`http://localhost:5000/api/ticket/resale/${ticketId}/buy`, {
+      await axios.post(`http://localhost:5000/api/ticket/resale`, {
         buyerId: user.id
       });
       alert('Ticket purchased successfully!');

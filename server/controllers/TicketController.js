@@ -2,6 +2,8 @@ const MovieTicket = require("../models/movieTicketSchema");
 
 // 🎬 1. Normal Buy Ticket (direct booking by user)
 exports.buyTicket = async (req, res) => {
+  console.log(req.body);
+  
   try {
     const {
       movieTitle,
@@ -11,22 +13,28 @@ exports.buyTicket = async (req, res) => {
       price,
       buyerId
     } = req.body;
-
+    
+    console.log(movieTitle,
+      theaterName,
+      showTime,
+      seatNumber,
+      price,
+      buyerId );
     // create new ticket directly booked by buyer
-    const newTicket = new MovieTicket({
+    const newTicket =await MovieTicket.create({
       movieTitle,
       theaterName,
       showTime,
       seatNumber,
       price,
-      seller: buyerId,   // initial buyer is also seller (he owns it)
+      seller: buyerId,   
       buyer: buyerId,
       paymentStatus: "paid",
       status: "sold",
-      isForSale: false
+      isForSale: false,
+      qrCode: null,
     });
 
-    await newTicket.save();
     res.status(201).json({ message: "Ticket booked successfully", ticket: newTicket });
   } catch (err) {
     res.status(500).json({ error: "Failed to buy ticket", details: err.message });
@@ -86,13 +94,24 @@ exports.buyResaleTicket = async (req, res) => {
 
 // 📋 4. Fetch All Tickets (both normal + resale)
 exports.getAllTickets = async (req, res) => {
+  console.log("at bkd");
   try {
-    const tickets = await MovieTicket.find()
-      .populate("seller", "name email")
-      .populate("buyer", "name email");
-
+    
+    const tickets = await MovieTicket.find();
     res.json(tickets);
   } catch (err) {
+    res.status(500).json({ error: "Failed to fetch tickets", details: err.message });
+  }
+};
+exports.getUserTickets = async (req, res) => {
+  console.log( req.params.userId);
+  try {
+      const tickets = await MovieTicket.find({ buyer: req.params.userId });
+      console.log(tickets);
+      
+      res.json(tickets);
+  } 
+  catch (err) {
     res.status(500).json({ error: "Failed to fetch tickets", details: err.message });
   }
 };

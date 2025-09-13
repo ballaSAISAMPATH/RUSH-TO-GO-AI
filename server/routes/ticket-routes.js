@@ -12,6 +12,7 @@ router.post("/resell", ticketController.resellTicket);
 router.post("/buy-resale", ticketController.buyResaleTicket);
 
 // fetch all tickets
-router.get("/", ticketController.getAllTickets);
+router.get("/getTickets", ticketController.getAllTickets);
+router.get("/getTickets:userId", ticketController.getUserTickets);
 
 module.exports = router;

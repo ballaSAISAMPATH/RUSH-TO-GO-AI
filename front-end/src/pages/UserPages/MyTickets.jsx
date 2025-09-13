@@ -17,16 +17,19 @@ const MyTickets = () => {
   const fetchMyTickets = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('/api/ticket/');
+      const response = await axios.get(`http://localhost:5000/api/ticket/getTickets:${user.id}`);
+      console.log("hi");
       
-      // Filter tickets owned by current user and not currently for sale
-      const myTickets = response.data.filter(ticket => 
-        ticket.buyer._id === user.id && 
-        ticket.paymentStatus === 'paid' && 
-        !ticket.isForSale
-      );
+      console.log(response.data);
       
-      setTickets(myTickets);
+      // // Filter tickets owned by current user and not currently for sale
+      // const myTickets = response.data.filter(ticket => 
+      //   ticket.buyer._id === user.id && 
+      //   ticket.paymentStatus === 'paid' && 
+      //   !ticket.isForSale
+      // );
+      
+      // setTickets(myTickets);
     } catch (error) {
       setMessage('Failed to fetch tickets');
       console.error('Error fetching tickets:', error);

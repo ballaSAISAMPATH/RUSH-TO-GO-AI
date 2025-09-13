@@ -104,6 +104,8 @@ const BuyTicket = () => {
   };
 
   const handleBuyTicket = async () => {
+      console.log(user);
+      
     if (!selectedMovie || !selectedTheater || !selectedShowTime || !selectedSeat) {
       setMessage('Please fill all fields');
       return;
@@ -117,7 +119,7 @@ const BuyTicket = () => {
         showTime: selectedShowTime,
         seatNumber: selectedSeat,
         price: selectedMovie.price,
-        buyerId: user.userId
+        buyerId: user.id
       });
 
       setMessage('Ticket booked successfully! 🎉');

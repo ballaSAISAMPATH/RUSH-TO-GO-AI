@@ -77,7 +77,7 @@ const UserHeader = () => {
 
   return (
     <header className="fixed top-0 w-full bg-black backdrop-blur-md border-b border-white z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center space-x-3 cursor-pointer" onClick={() => navigate('/')}>
             <div className="relative">
@@ -87,20 +87,12 @@ const UserHeader = () => {
               <div className="absolute -top-1 -right-1 w-3 h-3 bg-cyan-500 rounded-full animate-pulse"></div>
             </div>
             <div>
-              <span className="text-xl font-bold text-white">AI TaskFlow</span>
-              <div className="text-xs text-cyan-500 font-medium">Powered by AI</div>
+              <span className="text-xl font-bold text-white">RUSH-TO-GO</span>
+              {/* <div className="text-xs text-cyan-500 font-medium">Powered by AI</div> */}
             </div>
           </div>
 
           <nav className="hidden md:flex items-center space-x-8 relative">
-            <a
-              onClick={() => alert("i am a button")}
-              className={`transition duration-300 cursor-pointer px-2 py-1 ${
-                isAITaskActive ? 'text-cyan-500 font-semibold' : 'text-white hover:text-cyan-500'
-              }`}
-            >
-              AI task
-           </a>
             <button
               className="bg-gradient-to-br from-cyan-500 cursor-pointer to-cyan-600 hover:from-[#8FE877] hover:to-cyan-500 text-white font-bold w-10 h-10 rounded-full transition-all duration-200 text-sm flex items-center justify-center shadow-lg hover:shadow-xl transform hover:scale-105 ring-2 ring-white/20"
               onClick={() => navigate('/user/profile')}

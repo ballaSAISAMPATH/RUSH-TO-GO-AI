@@ -10,7 +10,7 @@ const movieTicketSchema = new mongoose.Schema({
     required: true
   },
   showTime: {
-    type: Date, // exact show date & time
+    type: String, // exact show date & time
     required: true
   },
   seatNumber: {
@@ -22,12 +22,12 @@ const movieTicketSchema = new mongoose.Schema({
     required: true
   },
   seller: {
-    type: mongoose.Schema.Types.ObjectId,
+    type:String,
     ref: "User",
     required: true
   },
   buyer: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: String,
     ref: "User",
     default: null
   },

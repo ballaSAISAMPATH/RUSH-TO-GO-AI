@@ -8,7 +8,7 @@ const Header = () => {
   const navigate = useNavigate();
 
   return (
-    <header className="fixed top-0 w-full bg-black/95 backdrop-blur-md border-b border-white z-50">
+    <header className="fixed top-0 w-full bg-black/95 backdrop-blur-md border-b-2  border-cyan-500 shadow-[0_0_15px_2px_rgba(34,211,238,0.8)] z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           {/* Logo + Brand */}

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { toast } from 'sonner';
-import { Ticket, DollarSign, ChevronDown, Calendar, MapPin, Clock, XCircle } from 'lucide-react';
+import { Ticket, ChevronDown, Calendar, MapPin, Clock, XCircle, IndianRupee } from 'lucide-react';
 
 const SellTicket = () => {
   const { user } = useSelector((state) => state.auth);
@@ -77,8 +77,8 @@ const SellTicket = () => {
   return (
     <div className="min-h-screen bg-black text-gray-200 p-8">
       <div className="max-w-xl mx-auto">
-        <div className="flex items-center justify-center gap-4 mb-8">
-          <DollarSign size={40} className="text-cyan-500" />
+        <div className="flex items-center justify-center gap-0 mb-8">
+          <IndianRupee size={30} className="text-cyan-500" />
           <h1 className="text-2xl sm:text-2xl font-extrabold text-white">
             Sell Your <span className="text-cyan-500">Tickets</span>
           </h1>

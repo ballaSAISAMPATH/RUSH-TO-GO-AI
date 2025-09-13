@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+
 import axios from 'axios';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '../../components/ui/alert-dialog';
 import { Star, Clock, MapPin, Calendar, Ticket, Play, Film } from 'lucide-react';
@@ -64,12 +65,14 @@ const BookTicket = () => {
   useEffect(() => {
     fetchMovies();
   }, []);
-const scrollToBottom = () => {
-  window.scrollTo({
-    top: document.documentElement.scrollHeight,
-    behavior: 'smooth'
-  });
-};
+ useEffect(() => {
+    if (selectedMovie) {
+      window.scrollTo({
+        top: document.documentElement.scrollHeight,
+        behavior: 'smooth'
+      });
+    }
+  }, [selectedMovie]);
   const fetchMovies = async () => {
     try {
       setIsLoadingMovies(true);
@@ -150,8 +153,8 @@ const scrollToBottom = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gray-900 p-4">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen bg-black p-4">
+      <div className="max-w-full mx-auto">
         <div className="text-center mb-8 opacity-0 animate-fadeInUp">
           <div className="flex items-center justify-center gap-3 mb-4">
             <Film className="text-cyan-400" size={40} />
@@ -378,7 +381,7 @@ const scrollToBottom = () => {
                   <Ticket size={20} />
                   Select Your Seat
                 </label>
-                <div className="bg-gray-800 rounded-xl p-8 border border-gray-700">
+                <div className="bg-black rounded-xl p-8 border border-gray-700">
                   {/* Screen indicator */}
                   <div className="text-center mb-12">
                     <div className="bg-gradient-to-b from-white to-gray-300 h-6 rounded-t-3xl w-4/5 mx-auto mb-3 shadow-lg"></div>
@@ -386,76 +389,80 @@ const scrollToBottom = () => {
                   </div>
                   
                   {/* Seat Layout - Full Theater */}
-                  <div className="space-y-4 max-w-6xl mx-auto">
-                    {['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'].map((row, rowIndex) => {
-                      const bookedSeats = getBookedSeatsForRow(row);
-                      
-                      return (
-                        <div key={row} className="flex items-center justify-center gap-4">
-                          <span className="text-cyan-400 font-bold w-10 text-center text-xl">{row}</span>
-                          <div className="flex gap-2">
-                            {/* Left section (1-5) */}
-                            {Array.from({ length: 5 }, (_, index) => {
-                              const seatNumber = `${row}${index + 1}`;
-                              const isBooked = bookedSeats.includes(index + 1);
-                              
-                              return (
-                                <SeatButton
-                                  key={seatNumber}
-                                  seatNumber={seatNumber}
-                                  seatIndex={index + 1}
-                                  isSelected={seatNumber === seatNumber}
-                                  isBooked={isBooked}
-                                  onClick={() => setSeatNumber(seatNumber)}
-                                />
-                              );
-                            })}
-                            
-                            {/* Left Aisle */}
-                            <div className="w-8"></div>
-                            
-                            {/* Middle section (6-10) */}
-                            {Array.from({ length: 5 }, (_, index) => {
-                              const seatNumber = `${row}${index + 6}`;
-                              const isBooked = bookedSeats.includes(index + 6);
-                              
-                              return (
-                                <SeatButton
-                                  key={seatNumber}
-                                  seatNumber={seatNumber}
-                                  seatIndex={index + 6}
-                                  isSelected={seatNumber === seatNumber}
-                                  isBooked={isBooked}
-                                  onClick={() => setSeatNumber(seatNumber)}
-                                />
-                              );
-                            })}
-                            
-                            {/* Right Aisle */}
-                            <div className="w-8"></div>
-                            
-                            {/* Right section (11-15) */}
-                            {Array.from({ length: 5 }, (_, index) => {
-                              const seatNumber = `${row}${index + 11}`;
-                              const isBooked = bookedSeats.includes(index + 11);
-                              
-                              return (
-                                <SeatButton
-                                  key={seatNumber}
-                                  seatNumber={seatNumber}
-                                  seatIndex={index + 11}
-                                  isSelected={seatNumber === seatNumber}
-                                  isBooked={isBooked}
-                                  onClick={() => setSeatNumber(seatNumber)}
-                                />
-                              );
-                            })}
-                          </div>
-                          <span className="text-cyan-400 font-bold w-10 text-center text-xl">{row}</span>
-                        </div>
-                      );
-                    })}
-                  </div>
+                  {/* Seat Layout - Full Theater */}
+<div className="space-y-4 max-w-6xl mx-auto">
+  {['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'].map((row, rowIndex) => {
+    const bookedSeats = getBookedSeatsForRow(row);
+    
+    return (
+      <div key={row} className="flex items-center justify-center gap-3 p-x-2">
+        <span className="text-cyan-400 font-bold w-10 text-center text-xl">{row}</span>
+        <div className="flex gap-4">
+          {/* Left section (1-5) */}
+          {Array.from({ length: 5 }, (_, index) => {
+            const currentSeat = `${row}${index + 1}`;
+            const isBooked = bookedSeats.includes(index + 1);
+            
+            return (
+              <SeatButton
+                key={currentSeat}
+                seatNumber={currentSeat}
+                seatIndex={index + 1}
+                // FIX: Compare the current seat's ID with the state variable
+                isSelected={currentSeat === seatNumber}
+                isBooked={isBooked}
+                onClick={() => setSeatNumber(currentSeat)}
+              />
+            );
+          })}
+          
+          {/* Left Aisle */}
+          <div className="w-8"></div>
+          
+          {/* Middle section (6-10) */}
+          {Array.from({ length: 5 }, (_, index) => {
+            const currentSeat = `${row}${index + 6}`;
+            const isBooked = bookedSeats.includes(index + 6);
+            
+            return (
+              <SeatButton
+                key={currentSeat}
+                seatNumber={currentSeat}
+                seatIndex={index + 6}
+                // FIX: Compare the current seat's ID with the state variable
+                isSelected={currentSeat === seatNumber}
+                isBooked={isBooked}
+                onClick={() => setSeatNumber(currentSeat)}
+              />
+            );
+          })}
+          
+          {/* Right Aisle */}
+          <div className="w-8"></div>
+          
+          {/* Right section (11-15) */}
+          {Array.from({ length: 5 }, (_, index) => {
+            const currentSeat = `${row}${index + 11}`;
+            const isBooked = bookedSeats.includes(index + 11);
+            
+            return (
+              <SeatButton
+                key={currentSeat}
+                seatNumber={currentSeat}
+                seatIndex={index + 11}
+                // FIX: Compare the current seat's ID with the state variable
+                isSelected={currentSeat === seatNumber}
+                isBooked={isBooked}
+                onClick={() => setSeatNumber(currentSeat)}
+              />
+            );
+          })}
+        </div>
+        <span className="text-cyan-400 font-bold w-10 text-center text-xl">{row}</span>
+      </div>
+    );
+  })}
+</div>
                   
                   {/* Legend */}
                   <div className="flex items-center justify-center gap-12 mt-12 pt-6 border-t border-gray-700">

@@ -32,7 +32,7 @@ const CurrentlySelling = () => {
 
   const getStatusBadge = (status) => {
     const baseClass = "px-2 py-1 rounded text-sm font-medium";
-    switch(status) {
+    switch (status) {
       case 'available':
         return `${baseClass} bg-green-100 text-green-800`;
       case 'sold':
@@ -45,7 +45,7 @@ const CurrentlySelling = () => {
   return (
     <div className="p-4">
       <h1 className="text-2xl font-bold mb-4">Currently Selling</h1>
-      
+
       {sellingTickets.length === 0 ? (
         <p>You have no tickets currently for sale</p>
       ) : (
@@ -68,10 +68,10 @@ const CurrentlySelling = () => {
                     )}
                   </div>
                 </div>
-                
+
                 <div className="flex flex-col gap-2">
                   {ticket.status === 'available' && (
-                    <button 
+                    <button
                       onClick={() => handleRemoveFromSale(ticket._id)}
                       className="bg-red-500 text-white px-3 py-1 rounded text-sm"
                     >

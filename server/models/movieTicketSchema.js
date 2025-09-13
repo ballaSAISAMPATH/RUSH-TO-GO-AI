@@ -38,7 +38,7 @@ const movieTicketSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ["available", "sold", "cancelled"],
+    enum: ["available", "sold"],
     default: "available"
   },
   isForSale: {

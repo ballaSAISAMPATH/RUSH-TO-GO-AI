@@ -34,11 +34,11 @@ const Login = () => {
   };
 
   return (
-    <div className="w-full max-w-md mx-auto lg:mt-[-18rem] pt-10">
+    <div className="w-full max-w-md mx-auto lg:mt-[-18rem] pt-50">
       <div className="text-center mb-8">
         <h2 className="text-3xl font-bold text-white mb-2">Welcome Back</h2>
         <p className="text-gray-300">
-          Sign in to your AI-powered workspace
+          Sign in to your  workspace
         </p>
       </div>
 

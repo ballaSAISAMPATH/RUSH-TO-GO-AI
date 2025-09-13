@@ -75,7 +75,7 @@ const SoldTickets = () => {
               </div>
               <div className="ml-4">
                 <p className="text-gray-400 text-sm">Total Revenue</p>
-                <p className="text-2xl font-bold text-cyan-500">₹{totalRevenue.toLocaleString()}</p>
+                <p className="text-2xl font-bold text-cyan-500">₹{Math.ceil(totalRevenue*0.8)}</p>
               </div>
             </div>
           </div>
@@ -90,7 +90,7 @@ const SoldTickets = () => {
               <div className="ml-4">
                 <p className="text-gray-400 text-sm">Avg. Price</p>
                 <p className="text-2xl font-bold text-white">
-                  ₹{soldTickets.length > 0 ? Math.round(totalRevenue / soldTickets.length) : 0}
+                  ₹{soldTickets.length > 0 ? Math.round(Math.ceil(totalRevenue*0.8) / soldTickets.length) : 0}
                 </p>
               </div>
             </div>
@@ -135,7 +135,7 @@ const SoldTickets = () => {
                         </div>
                       </div>
                       <div className="text-right">
-                        <div className="inline-flex items-center text-green-600 px-3 py-1 font-extrabold rounded-full text-xs  bg-black-500 bg-opacity-20 text-cyan-500 border border-cyan-500">
+                        <div className="inline-flex items-center  px-3 py-1 font-extrabold rounded-full text-xs  bg-black-500 bg-opacity-20 text-cyan-500 border border-cyan-500">
                           SOLD
                         </div>
                       </div>
@@ -181,7 +181,7 @@ const SoldTickets = () => {
                   {/* Price Section */}
                 <div className="mt-4 lg:mt-0 lg:ml-6 flex justify-end">
                     <div className="text-right">
-                      <div className="text-2xl font-bold text-cyan-500 mb-1">₹{ticket.price}</div>
+                      <div className="text-2xl font-bold text-cyan-500 mb-1">₹{Math.ceil(ticket.price*0.8)}</div>
                       <div className="text-sm text-gray-400">Earned</div>
                     </div>
                   </div>
@@ -212,11 +212,11 @@ const SoldTickets = () => {
                 <p className="text-gray-400 text-sm">Tickets Sold</p>
               </div>
               <div className="text-center">
-                <p className="text-3xl font-bold text-cyan-500 mb-1">₹{totalRevenue.toLocaleString()}</p>
+                <p className="text-3xl font-bold text-cyan-500 mb-1">₹{Math.ceil(totalRevenue*0.8)}</p>
                 <p className="text-gray-400 text-sm">Total Revenue</p>
               </div>
               <div className="text-center">
-                <p className="text-3xl font-bold text-cyan-500 mb-1">₹{soldTickets.length > 0 ? Math.round(totalRevenue / soldTickets.length) : 0}</p>
+                <p className="text-3xl font-bold text-cyan-500 mb-1">₹{soldTickets.length > 0 ? Math.round(Math.ceil(totalRevenue*0.8) / soldTickets.length) : 0}</p>
                 <p className="text-gray-400 text-sm">Average Price</p>
               </div>
               <div className="text-center">

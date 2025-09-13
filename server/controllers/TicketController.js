@@ -213,7 +213,7 @@ const bookTicket = async (req, res) => {
       price,
       seller: userId,
       buyer: userId,
-      status: 'sold',
+      status: 'available',
       isForSale: false,
       paymentStatus: 'paid',
       qrCode: `QR_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
@@ -233,13 +233,13 @@ const getUserBookedTickets = async (req, res) => {
   try {
     const { userId } = req.params;
 
-    const tickets = await MovieTicket.find({
-      $or: [
-        { seller: userId, buyer: userId }, // Originally booked by user
-        { buyer: userId, seller: { $ne: userId } } // Bought from reseller
-      ]
-    }).populate('seller', 'name email').populate('buyer', 'name email');
-
+    const tickets = await MovieTicket.find(
+   
+        { seller: userId, buyer: userId,status:"available" }
+    
+    );
+    console.log(tickets);
+    
     res.json(tickets);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -258,13 +258,10 @@ const listTicketForResale = async (req, res) => {
     }
 
     ticket.isForSale = true;
-    ticket.price = resalePrice;
-    ticket.status = 'available';
     ticket.buyer = null;
     ticket.paymentStatus = 'pending';
 
     await ticket.save();
-    await ticket.populate('seller', 'name email');
 
     res.json(ticket);
   } catch (error) {
@@ -342,9 +339,8 @@ const removeFromSale = async (req, res) => {
     }
 
     ticket.isForSale = false;
-    ticket.status = 'sold'; // Revert back to sold so it can be resold again
-    ticket.buyer = ticket.seller; // Reset buyer back to original owner
-    ticket.paymentStatus = 'paid';
+    ticket.buyer = ticket.seller; 
+    ticket.paymentStatus = 'pending';
 
     await ticket.save();
     res.json({ message: 'Ticket removed from sale' });

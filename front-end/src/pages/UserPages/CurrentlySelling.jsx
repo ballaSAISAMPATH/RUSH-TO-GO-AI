@@ -158,8 +158,12 @@ const CurrentlySelling = () => {
                     <div className="flex items-center gap-3">
                       <DollarSign size={20} className="text-gray-400" />
                       <div>
-                        <span className="text-gray-400">Selling Price:</span>
+                        <span className="text-gray-400">Actual Price:</span>
                         <p className="font-semibold text-white">₹{ticket.price}</p>
+                      </div>
+                      <div>
+                        <span className="text-gray-400">Selling Price:</span>
+                        <p className="font-semibold text-white">₹{Math.ceil(ticket.price*0.8)}</p>
                       </div>
                     </div>
 

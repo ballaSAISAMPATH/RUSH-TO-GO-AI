@@ -34,7 +34,7 @@ const SellTicket = () => {
       setIsLoading(true);
       const response = await axios.get(`http://localhost:5000/api/ticket/booked/${user?.id}`);
       const availableForSale = response.data.filter(ticket =>
-        ticket.status === 'sold' &&
+        ticket.status === 'available' &&
         !ticket.isForSale &&
         new Date(ticket.showTime) > new Date()
       );

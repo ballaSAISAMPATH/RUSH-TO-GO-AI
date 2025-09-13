@@ -340,7 +340,9 @@ const removeFromSale = async (req, res) => {
     }
     
     ticket.isForSale = false;
-    ticket.status = 'cancelled';
+    ticket.status = 'sold'; // Revert back to sold so it can be resold again
+    ticket.buyer = ticket.seller; // Reset buyer back to original owner
+    ticket.paymentStatus = 'paid';
     
     await ticket.save();
     res.json({ message: 'Ticket removed from sale' });

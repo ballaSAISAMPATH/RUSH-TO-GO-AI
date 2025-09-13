@@ -15,16 +15,6 @@ const UserHeader = () => {
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
-
-
- 
-
-
-
-  
-
- 
-
   const menuItems = [
     {
       icon: Home,

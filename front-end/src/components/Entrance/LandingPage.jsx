@@ -1,9 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { Brain, Zap, Calendar, Target, CheckCircle, Tag } from 'lucide-react';
-import Header from './Header';
-import Footer from './Footer';
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { Brain, Zap, Calendar, Target, CheckCircle, Tag } from "lucide-react";
+import Header from "./Header";
+import Footer from "./Footer";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts";
+import CountUp from "react-countup";
 
+const ticketData = [
+  { name: "Total Tickets Sold", value: 943 },
+  { name: "Cancelled Tickets (~1%)", value: 9.43 },
+  { name: "Not Resold Tickets (~50%)", value: 4.715 },
+];
 const TicketDemo = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [demoResponse, setDemoResponse] = useState(null);
@@ -19,7 +33,7 @@ const TicketDemo = () => {
       { threshold: 0.1 }
     );
 
-    const element = document.getElementById('ticket-demo');
+    const element = document.getElementById("ticket-demo");
     if (element) {
       observer.observe(element);
     }
@@ -34,12 +48,27 @@ const TicketDemo = () => {
     setTimeout(() => {
       setDemoResponse({
         breakdown: [
-          { step: "Seller lists ticket (₹200)", detail: "Uploads unused ticket to platform" },
-          { step: "Platform secures transaction", detail: "Stripe/PayPal ensures fraud-free resale" },
-          { step: "Buyer gets discounted ticket", detail: "Pays ₹160–175 (20–30% cheaper)" },
-          { step: "Seller refunded instantly", detail: "Receives ₹150 (75% of original)" },
-          { step: "Platform keeps commission", detail: "10–15% retained for operations" }
-        ]
+          {
+            step: "Seller lists ticket (₹200)",
+            detail: "Uploads unused ticket to platform",
+          },
+          {
+            step: "Platform secures transaction",
+            detail: "Stripe/PayPal ensures fraud-free resale",
+          },
+          {
+            step: "Buyer gets discounted ticket",
+            detail: "Pays ₹160–175 (20–30% cheaper)",
+          },
+          {
+            step: "Seller refunded instantly",
+            detail: "Receives ₹150 (75% of original)",
+          },
+          {
+            step: "Platform keeps commission",
+            detail: "10–15% retained for operations",
+          },
+        ],
       });
       setIsProcessing(false);
     }, 2000);
@@ -48,11 +77,15 @@ const TicketDemo = () => {
   return (
     <div
       id="ticket-demo"
-      className={`bg-white/5 rounded-2xl p-8 border border-white hover:border-cyan-500 transition-all duration-300 ${isVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-8'}`}
+      className={`bg-white/5 rounded-2xl p-8 border border-white hover:border-cyan-500 transition-all duration-300 ${
+        isVisible ? "animate-fade-in-up" : "opacity-0 translate-y-8"
+      }`}
     >
       <div className="flex items-center mb-6">
         <Brain className="w-6 h-6 text-cyan-500 mr-3" />
-        <h3 className="text-xl font-semibold text-white">Demo Ticket Resale Flow</h3>
+        <h3 className="text-xl font-semibold text-white">
+          Demo Ticket Resale Flow
+        </h3>
       </div>
 
       <button
@@ -80,7 +113,10 @@ const TicketDemo = () => {
             Resale Breakdown:
           </h4>
           {demoResponse.breakdown.map((item, index) => (
-            <div key={index} className="bg-white/10 rounded-lg p-4 border border-white/20">
+            <div
+              key={index}
+              className="bg-white/10 rounded-lg p-4 border border-white/20"
+            >
               <span className="text-white font-medium">{item.step}</span>
               <p className="text-sm text-cyan-300 mt-1">{item.detail}</p>
             </div>
@@ -102,26 +138,26 @@ const LandingPage = () => {
       icon: Brain,
       title: "Ticket Resale Marketplace",
       desc: "A trusted space where users can resell unused tickets instantly.",
-      example: "Sell a ₹200 ticket → recover up to ₹150 securely."
+      example: "Sell a ₹200 ticket → recover up to ₹150 securely.",
     },
     {
       icon: Target,
       title: "Affordable Last-Minute Deals",
       desc: "Buyers get discounted tickets at 20–30% less while enjoying the same show.",
-      example: "₹200 ticket available at ₹160–175 just before the show."
+      example: "₹200 ticket available at ₹160–175 just before the show.",
     },
     {
       icon: Calendar,
       title: "Secure & Reliable Payments",
       desc: "Powered by Stripe & PayPal ensuring safe transfers, instant refunds, and payouts.",
-      example: "Both buyers & sellers enjoy fraud-free transactions."
+      example: "Both buyers & sellers enjoy fraud-free transactions.",
     },
     {
       icon: Tag,
       title: "Smart Technology Integration",
       desc: "AI/ML predicts demand, GPS tracking prevents fraud, and boosts trust.",
-      example: "Weekend resale demand spikes by 40% auto-detected."
-    }
+      example: "Weekend resale demand spikes by 40% auto-detected.",
+    },
   ];
 
   useEffect(() => {
@@ -144,7 +180,7 @@ const LandingPage = () => {
       { threshold: 0.1 }
     );
 
-    const sections = document.querySelectorAll('[data-scroll-animate]');
+    const sections = document.querySelectorAll("[data-scroll-animate]");
     sections.forEach((section) => {
       observer.observe(section);
     });
@@ -217,7 +253,9 @@ const LandingPage = () => {
           <div className="text-center">
             <div className="inline-flex items-center bg-cyan-500/10 border border-cyan-500/30 rounded-full px-6 py-2 mb-8">
               <Zap className="w-4 h-4 text-cyan-500 mr-2" />
-              <span className="text-cyan-500 font-medium text-sm">Secure · Instant · Affordable</span>
+              <span className="text-cyan-500 font-medium text-sm">
+                Secure · Instant · Affordable
+              </span>
             </div>
 
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
@@ -227,8 +265,9 @@ const LandingPage = () => {
             </h1>
 
             <p className="text-xl md:text-2xl text-white mb-8 max-w-4xl mx-auto leading-relaxed">
-              Sellers recover up to 75–80% of their ticket price, buyers save 20–30%,
-              and secure payments ensure smooth, fraud-free transactions — all in seconds.
+              Sellers recover up to 75–80% of their ticket price, buyers save
+              20–30%, and secure payments ensure smooth, fraud-free transactions
+              — all in seconds.
             </p>
 
             {/* Features Preview */}
@@ -240,20 +279,26 @@ const LandingPage = () => {
                     key={index}
                     className={`p-6 rounded-2xl border transition-all duration-500 transform hover:scale-105 ${
                       currentFeature === index
-                        ? 'bg-cyan-500/10 border-cyan-500 shadow-lg shadow-cyan-500/20'
-                        : 'bg-white/5 border-white/20 hover:border-cyan-500/50'
+                        ? "bg-cyan-500/10 border-cyan-500 shadow-lg shadow-cyan-500/20"
+                        : "bg-white/5 border-white/20 hover:border-cyan-500/50"
                     }`}
                   >
                     <Icon
                       className={`w-8 h-8 mb-4 mx-auto transition-colors duration-300 ${
-                        currentFeature === index ? 'text-cyan-500' : 'text-white'
+                        currentFeature === index
+                          ? "text-cyan-500"
+                          : "text-white"
                       }`}
                     />
-                    <h3 className="text-white font-semibold mb-2 text-sm">{feature.title}</h3>
+                    <h3 className="text-white font-semibold mb-2 text-sm">
+                      {feature.title}
+                    </h3>
                     <p className="text-white text-xs mb-3">{feature.desc}</p>
                     <div
                       className={`text-xs italic transition-colors duration-300 ${
-                        currentFeature === index ? 'text-cyan-500' : 'text-white/70'
+                        currentFeature === index
+                          ? "text-cyan-500"
+                          : "text-white/70"
                       }`}
                     >
                       {feature.example}
@@ -265,20 +310,98 @@ const LandingPage = () => {
           </div>
         </div>
       </section>
+      <section className="w-full bg-gray-900 text-white py-16 px-4">
+        <div className="max-w-7xl mx-auto text-center space-y-8">
+          <h2 className="text-4xl font-bold text-cyan-400">
+            Movie Ticketing Stats – India 2023
+          </h2>
+          <p className="text-gray-300 max-w-2xl mx-auto">
+            Understanding ticket cancellations and resales can help identify
+            opportunities for resale platforms.
+          </p>
+
+          {/* Stats Cards */}
+          <div
+            id="stats"
+            className="flex flex-col md:flex-row gap-6 mt-8 justify-between"
+          >
+            <div className="flex-1 bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+              <h3 className="text-gray-400 text-sm uppercase mb-2">
+                Total Tickets Sold
+              </h3>
+              <p className="text-3xl font-bold text-cyan-400">
+                <CountUp end={943} duration={2} suffix="M" />
+              </p>
+            </div>
+            <div className="flex-1 bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+              <h3 className="text-gray-400 text-sm uppercase mb-2">
+                Cancelled Tickets (~1%)
+              </h3>
+              <p className="text-3xl font-bold text-cyan-400">
+                <CountUp end={9.43} duration={2} decimals={2} suffix="M" />
+              </p>
+            </div>
+            <div className="flex-1 bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+              <h3 className="text-gray-400 text-sm uppercase mb-2">
+                Not Resold Tickets (~50%)
+              </h3>
+              <p className="text-3xl font-bold text-cyan-400">
+                <CountUp end={4.715} duration={2} decimals={2} suffix="M" />
+              </p>
+            </div>
+          </div>
+
+          {/* Bar Chart */}
+          <div className="mt-12 h-64 bg-gray-800 p-4 rounded-lg shadow-lg">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart
+                data={ticketData}
+                margin={{ top: 20, right: 30, left: 0, bottom: 5 }}
+              >
+                <XAxis dataKey="name" tick={{ fill: "white", fontSize: 12 }} />
+                <YAxis tick={{ fill: "white", fontSize: 12 }} />
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: "#1f2937",
+                    borderRadius: "8px",
+                    border: "none",
+                    color: "white",
+                  }}
+                />
+                <Bar dataKey="value" fill="#06b6d4" barSize={40} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+
+          <p className="text-gray-400 mt-4 text-sm max-w-xl mx-auto">
+            Assuming a 1% cancellation rate, roughly half of those cancellations
+            may remain unsold, representing a potential daily market of
+            ~12,000–15,000 tickets.
+          </p>
+        </div>
+      </section>
 
       {/* Demo Section */}
-      <section id="demo" className="py-20 bg-gradient-to-r from-cyan-500/5 to-transparent">
+      <section
+        id="demo"
+        className="py-20 bg-gradient-to-r from-cyan-500/5 to-transparent"
+      >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div
             id="demo-header"
             data-scroll-animate
             className={`text-center mb-12 ${
-              visibleSections['demo-header'] ? 'animate-fade-in-up' : 'opacity-0 translate-y-8'
+              visibleSections["demo-header"]
+                ? "animate-fade-in-up"
+                : "opacity-0 translate-y-8"
             }`}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">See Ticket Resale in Action</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              See Ticket Resale in Action
+            </h2>
             <p className="text-xl text-white">
-              Experience how Rush-to-Go enables fair refunds and cheaper last-minute tickets.
+              Experience how Rush-to-Go enables fair refunds and cheaper
+              last-minute tickets.
             </p>
           </div>
           <TicketDemo />
@@ -286,18 +409,26 @@ const LandingPage = () => {
       </section>
 
       {/* Features Detail Section */}
-      <section id="features" className="py-20 bg-gradient-to-br from-cyan-500/5 to-cyan-500/5">
+      <section
+        id="features"
+        className="py-20 bg-gradient-to-br from-cyan-500/5 to-cyan-500/5"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div
             id="features-header"
             data-scroll-animate
             className={`text-center mb-16 ${
-              visibleSections['features-header'] ? 'animate-fade-in-up' : 'opacity-0 translate-y-8'
+              visibleSections["features-header"]
+                ? "animate-fade-in-up"
+                : "opacity-0 translate-y-8"
             }`}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Why Choose Rush-to-Go</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              Why Choose Rush-to-Go
+            </h2>
             <p className="text-xl text-white">
-              Explore how our platform makes last-minute ticket resale safe, affordable, and stress-free.
+              Explore how our platform makes last-minute ticket resale safe,
+              affordable, and stress-free.
             </p>
           </div>
 
@@ -306,7 +437,9 @@ const LandingPage = () => {
               id="features-left"
               data-scroll-animate
               className={`space-y-8 ${
-                visibleSections['features-left'] ? 'animate-fade-in-left' : 'opacity-0 translate-x-[-30px]'
+                visibleSections["features-left"]
+                  ? "animate-fade-in-left"
+                  : "opacity-0 translate-x-[-30px]"
               }`}
             >
               <div className="flex items-start space-x-4">
@@ -314,9 +447,12 @@ const LandingPage = () => {
                   <Brain className="w-6 h-6 text-cyan-500" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-white mb-2">Ticket Resale Marketplace</h3>
+                  <h3 className="text-xl font-semibold text-white mb-2">
+                    Ticket Resale Marketplace
+                  </h3>
                   <p className="text-white">
-                    A trusted space where sellers recover up to 75–80% of ticket price, minimizing loss from cancellations.
+                    A trusted space where sellers recover up to 75–80% of ticket
+                    price, minimizing loss from cancellations.
                   </p>
                 </div>
               </div>
@@ -326,9 +462,12 @@ const LandingPage = () => {
                   <Target className="w-6 h-6 text-cyan-500" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-white mb-2">Affordable Last-Minute Deals</h3>
+                  <h3 className="text-xl font-semibold text-white mb-2">
+                    Affordable Last-Minute Deals
+                  </h3>
                   <p className="text-white">
-                    Buyers save 20–30% while enjoying the same movie — perfect for last-minute plans.
+                    Buyers save 20–30% while enjoying the same movie — perfect
+                    for last-minute plans.
                   </p>
                 </div>
               </div>
@@ -338,7 +477,9 @@ const LandingPage = () => {
               id="features-right"
               data-scroll-animate
               className={`space-y-8 ${
-                visibleSections['features-right'] ? 'animate-fade-in-right' : 'opacity-0 translate-x-[30px]'
+                visibleSections["features-right"]
+                  ? "animate-fade-in-right"
+                  : "opacity-0 translate-x-[30px]"
               }`}
             >
               <div className="flex items-start space-x-4">
@@ -346,9 +487,12 @@ const LandingPage = () => {
                   <Calendar className="w-6 h-6 text-cyan-500" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-white mb-2">Secure Payments</h3>
+                  <h3 className="text-xl font-semibold text-white mb-2">
+                    Secure Payments
+                  </h3>
                   <p className="text-white">
-                    Stripe & PayPal guarantee fraud-free transfers, instant refunds, and smooth payouts.
+                    Stripe & PayPal guarantee fraud-free transfers, instant
+                    refunds, and smooth payouts.
                   </p>
                 </div>
               </div>
@@ -358,9 +502,12 @@ const LandingPage = () => {
                   <Tag className="w-6 h-6 text-cyan-500" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-white mb-2">Smart Technology + GPS</h3>
+                  <h3 className="text-xl font-semibold text-white mb-2">
+                    Smart Technology + GPS
+                  </h3>
                   <p className="text-white">
-                    AI/ML predicts demand spikes, GPS prevents fraud, and location-based recommendations add convenience.
+                    AI/ML predicts demand spikes, GPS prevents fraud, and
+                    location-based recommendations add convenience.
                   </p>
                 </div>
               </div>

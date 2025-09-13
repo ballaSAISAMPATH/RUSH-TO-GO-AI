@@ -41,7 +41,7 @@ const UserSideBar = () => {
     }
   };
 
- const menuItems = [
+const menuItems = [
   {
     icon: Home,
     label: 'Movies',
@@ -50,33 +50,39 @@ const UserSideBar = () => {
   },
   {
     icon: Plus,
-    label: 'My Tickets',
+    label: 'Current bookings',
     path: '/user/MyTickets',
-    description: 'Check your current bookings'
+    description: 'Check your bookings'
   },
   {
     icon: Plus,
-    label: 'Resale Tickets',
+    label: 'Buy a sold ticket',
     path: '/user/ResaleTickets',
-    description: 'Buy tickets listed for resale'
+    description: 'Get discounted tickets'
   },
   {
     icon: BarChart3,
-    label: 'My Selling',
-    path: '/user/MySelling',
-    description: 'Sell or transfer your tickets'
+    label: 'Currently Selling',
+    path: '/user/CurrentlySelling',
+    description: 'Tickets you listed for resale'
   },
   {
     icon: MessageSquare,
-    label: 'Purchase History',
-    path: '/user/history', // you don’t have this route yet, can add later
-    description: 'View your past purchases & feedback'
+    label: 'Sold Tickets',
+    path: '/user/sold-tickets',
+    description: 'Tickets you have successfully sold'
+  },
+  {
+    icon: MessageSquare,
+    label: 'Sell Ticket',
+    path: '/user/SellTicket',
+    description: 'Sell your tickets to someone needy'
   },
   {
     icon: User,
     label: 'Profile',
     path: '/user/profile',
-    description: 'Manage your account'
+    description: 'Manage account'
   }
 ];
 

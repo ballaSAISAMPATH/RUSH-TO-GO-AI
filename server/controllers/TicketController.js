@@ -1,98 +1,253 @@
-const MovieTicket = require("../models/movieTicketSchema");
+const MovieTicket = require('../models/movieTicketSchema');
+const User = require('../models/User');
 
-// 🎬 1. Normal Buy Ticket (direct booking by user)
-exports.buyTicket = async (req, res) => {
+// Get all available movies with static data
+const getAvailableMovies = async (req, res) => {
   try {
-    const {
-      movieTitle,
-      theaterName,
-      showTime,
-      seatNumber,
-      price,
-      buyerId
-    } = req.body;
+const staticMovies = [
+  {
+    _id: 'movie1',
+    title: 'Avengers: Endgame',
+    theaters: [
+      {
+        name: 'PVR Cinemas',
+        showtimes: ['10:00 AM', '2:00 PM', '6:00 PM', '10:00 PM'],
+        price: 250
+      },
+      {
+        name: 'INOX',
+        showtimes: ['11:00 AM', '3:00 PM', '7:00 PM', '11:00 PM'],
+        price: 280
+      }
+    ],
+    poster: 'https://image.tmdb.org/t/p/w500/ulzhLuWrPK07P1YkdWQLZnQh1JL.jpg' // ✅ works
+  },
+  {
+    _id: 'movie2',
+    title: 'Spider-Man: No Way Home',
+    theaters: [
+      {
+        name: 'Cinepolis',
+        showtimes: ['9:00 AM', '1:00 PM', '5:00 PM', '9:00 PM'],
+        price: 300
+      },
+      {
+        name: 'PVR Cinemas',
+        showtimes: ['12:00 PM', '4:00 PM', '8:00 PM'],
+        price: 270
+      }
+    ],
+    poster: 'https://image.tmdb.org/t/p/w500/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg' // ✅ works
+  },
+  {
+    _id: 'movie3',
+    title: 'RRR',
+    theaters: [
+      {
+        name: 'Asian Cinemas',
+        showtimes: ['10:30 AM', '2:30 PM', '6:30 PM', '10:30 PM'],
+        price: 200
+      },
+      {
+        name: 'INOX',
+        showtimes: ['11:30 AM', '3:30 PM', '7:30 PM'],
+        price: 220
+      }
+    ],
+    poster: 'https://www.themoviedb.org/t/p/w1280/nEufeZlyAOLqO2brrs0yeF1lgXO.jpg' // 🔄 fixed RRR poster
+  },
+  {
+    _id: 'movie4',
+    title: 'Bahubali 2',
+    theaters: [
+      {
+        name: 'Multiplex',
+        showtimes: ['9:30 AM', '1:30 PM', '5:30 PM', '9:30 PM'],
+        price: 180
+      }
+    ],
+    poster: 'https://www.themoviedb.org/t/p/w1280/xQ22LOWSkClP3maYhR9nZH0dnWM.jpg' // 🔄 fixed Bahubali 2 poster
+  }
+];
+    
+    res.json(staticMovies);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
 
-    // create new ticket directly booked by buyer
-    const newTicket = new MovieTicket({
+// Book a ticket normally
+const bookTicket = async (req, res) => {
+  try {
+    const { movieTitle, theaterName, showTime, seatNumber, price, userId } = req.body;
+    
+    const ticket = new MovieTicket({
       movieTitle,
       theaterName,
-      showTime,
+      showTime: new Date(showTime),
       seatNumber,
       price,
-      seller: buyerId,   // initial buyer is also seller (he owns it)
-      buyer: buyerId,
-      paymentStatus: "paid",
-      status: "sold",
-      isForSale: false
+      seller: userId,
+      buyer: userId,
+      status: 'sold',
+      isForSale: false,
+      paymentStatus: 'paid',
+      qrCode: `QR_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
     });
 
-    await newTicket.save();
-    res.status(201).json({ message: "Ticket booked successfully", ticket: newTicket });
-  } catch (err) {
-    res.status(500).json({ error: "Failed to buy ticket", details: err.message });
-  }
-};
-
-// 🔄 2. Resell Ticket (user puts an already booked ticket for sale)
-exports.resellTicket = async (req, res) => {
-  try {
-    const { ticketId, resalePrice, userId } = req.body;
-
-    const ticket = await MovieTicket.findById(ticketId);
-
-    if (!ticket) return res.status(404).json({ error: "Ticket not found" });
-    if (ticket.buyer.toString() !== userId) {
-      return res.status(403).json({ error: "You can only resell tickets you own" });
-    }
-
-    // mark ticket as listed for sale
-    ticket.isForSale = true;
-    ticket.price = resalePrice; // update to new price
-    ticket.status = "available";
-    ticket.paymentStatus = "pending";
-
     await ticket.save();
-    res.json({ message: "Ticket listed for resale", ticket });
-  } catch (err) {
-    res.status(500).json({ error: "Failed to resell ticket", details: err.message });
+    await ticket.populate('seller', 'name email');
+    
+    res.status(201).json(ticket);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
 };
 
-// 🛒 3. Buy Resale Ticket
-exports.buyResaleTicket = async (req, res) => {
+// Get user's booked tickets
+const getUserBookedTickets = async (req, res) => {
   try {
-    const { ticketId, buyerId } = req.body;
-
-    const ticket = await MovieTicket.findById(ticketId);
-
-    if (!ticket) return res.status(404).json({ error: "Ticket not found" });
-    if (!ticket.isForSale || ticket.status !== "available") {
-      return res.status(400).json({ error: "Ticket is not available for resale" });
-    }
-
-    // update ownership
-    ticket.buyer = buyerId;
-    ticket.seller = buyerId; // new owner
-    ticket.paymentStatus = "paid";
-    ticket.status = "sold";
-    ticket.isForSale = false;
-
-    await ticket.save();
-    res.json({ message: "Resale ticket purchased successfully", ticket });
-  } catch (err) {
-    res.status(500).json({ error: "Failed to buy resale ticket", details: err.message });
-  }
-};
-
-// 📋 4. Fetch All Tickets (both normal + resale)
-exports.getAllTickets = async (req, res) => {
-  try {
-    const tickets = await MovieTicket.find()
-      .populate("seller", "name email")
-      .populate("buyer", "name email");
-
+    const { userId } = req.params;
+    
+    const tickets = await MovieTicket.find({ 
+      $or: [
+        { seller: userId, buyer: userId }, // Originally booked by user
+        { buyer: userId, seller: { $ne: userId } } // Bought from reseller
+      ]
+    }).populate('seller', 'name email').populate('buyer', 'name email');
+    
     res.json(tickets);
-  } catch (err) {
-    res.status(500).json({ error: "Failed to fetch tickets", details: err.message });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
+};
+
+// List ticket for resale
+const listTicketForResale = async (req, res) => {
+  try {
+    const { ticketId } = req.params;
+    const { resalePrice } = req.body;
+    
+    const ticket = await MovieTicket.findById(ticketId);
+    if (!ticket) {
+      return res.status(404).json({ error: 'Ticket not found' });
+    }
+    
+    ticket.isForSale = true;
+    ticket.price = resalePrice;
+    ticket.status = 'available';
+    ticket.buyer = null;
+    ticket.paymentStatus = 'pending';
+    
+    await ticket.save();
+    await ticket.populate('seller', 'name email');
+    
+    res.json(ticket);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+// Get all resale tickets
+const getResaleTickets = async (req, res) => {
+  try {
+    const tickets = await MovieTicket.find({ 
+      isForSale: true, 
+      status: 'available',
+      showTime: { $gt: new Date() } // Only future shows
+    }).populate('seller', 'name email');
+    
+    res.json(tickets);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+// Buy resale ticket
+const buyResaleTicket = async (req, res) => {
+  try {
+    const { ticketId } = req.params;
+    const { buyerId } = req.body;
+    
+    const ticket = await MovieTicket.findById(ticketId);
+    if (!ticket || !ticket.isForSale || ticket.status !== 'available') {
+      return res.status(400).json({ error: 'Ticket not available for purchase' });
+    }
+    
+    ticket.buyer = buyerId;
+    ticket.status = 'sold';
+    ticket.isForSale = false;
+    ticket.paymentStatus = 'paid';
+    
+    await ticket.save();
+    await ticket.populate('seller', 'name email');
+    await ticket.populate('buyer', 'name email');
+    
+    res.json(ticket);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+// Get user's selling tickets
+const getUserSellingTickets = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    
+    const tickets = await MovieTicket.find({ 
+      seller: userId,
+      isForSale: true
+    }).populate('buyer', 'name email');
+    
+    res.json(tickets);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+// Remove ticket from sale
+const removeFromSale = async (req, res) => {
+  try {
+    const { ticketId } = req.params;
+    
+    const ticket = await MovieTicket.findById(ticketId);
+    if (!ticket) {
+      return res.status(404).json({ error: 'Ticket not found' });
+    }
+    
+    ticket.isForSale = false;
+    ticket.status = 'cancelled';
+    
+    await ticket.save();
+    res.json({ message: 'Ticket removed from sale' });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+// Get user's sold tickets (tickets sold to others)
+const getUserSoldTickets = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    
+    const tickets = await MovieTicket.find({ 
+      seller: userId,
+      buyer: { $ne: userId }, // Buyer is different from seller
+      status: 'sold'
+    }).populate('seller', 'name email').populate('buyer', 'name email');
+    
+    res.json(tickets);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+module.exports = {
+  getAvailableMovies,
+  bookTicket,
+  getUserBookedTickets,
+  listTicketForResale,
+  getResaleTickets,
+  buyResaleTicket,
+  getUserSellingTickets,
+  removeFromSale,
+  getUserSoldTickets
 };

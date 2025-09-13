@@ -22,14 +22,8 @@ router.post('/book', bookTicket);
 // Get user's booked tickets
 router.get('/booked/:userId', getUserBookedTickets);
 
-<<<<<<< HEAD
-// fetch all tickets
-router.get("/getTickets", ticketController.getAllTickets);
-router.get("/getTickets:userId", ticketController.getUserTickets);
-=======
 // List ticket for resale
 router.put('/resale/:ticketId', listTicketForResale);
->>>>>>> 32985772134c1dad2127f85576c61ab12f78937c
 
 // Get all resale tickets
 router.get('/resale', getResaleTickets);

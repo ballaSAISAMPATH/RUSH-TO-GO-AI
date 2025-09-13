@@ -44,25 +44,31 @@ const UserSideBar = () => {
   const menuItems = [
     {
       icon: Home,
-      label: 'task 1',
+      label: 'Movies',
       path: '/user/home',
-      description: 'Update status'
+      description: 'get a new ticket'
     },
     {
       icon: Plus,
-      label: 'task 2',
+      label: 'Current bookings',
       path: '..',
-      description: 'Add new AI tasks'
+      description: 'check your bookings'
+    },
+    {
+      icon: Plus,
+      label: 'Buy a sold ticket',
+      path: '..',
+      description: 'get discounted tickets'
     },
     {
       icon: BarChart3,
-      label: 'task 3',
+      label: 'Transfer tickets',
       path: '..',
-      description: 'View analytics'
+      description: 'sell your tickets to someone needy'
     },
     {
       icon: MessageSquare,
-      label: 'task 4',
+      label: 'Purchase history',
       path: '..',
       description: 'Share feedback'
     },

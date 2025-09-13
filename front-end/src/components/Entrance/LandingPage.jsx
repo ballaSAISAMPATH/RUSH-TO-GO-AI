@@ -49,22 +49,22 @@ const AIDemo = () => {
   };
 
   return (
-    <div id="ai-demo" className={`bg-gray-50 rounded-2xl p-8 border border-gray-200 hover:border-green-500 transition-all duration-300 ${isVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-8'}`}>
+    <div id="ai-demo" className={`bg-whiterounded-2xl p-8 border border-white hover:border-cyan-500 transition-all duration-300 ${isVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-8'}`}>
       <div className="flex items-center mb-6">
-        <Brain className="w-6 h-6 text-green-500 mr-3" />
-        <h3 className="text-xl font-semibold text-gray-900">Demo AI Task Breakdown</h3>
+        <Brain className="w-6 h-6 text-cyan-500 mr-3" />
+        <h3 className="text-xl font-semibold text-white">Demo AI Task Breakdown</h3>
       </div>
       
       <div className="space-y-4">
         <div>
-          <label className="block text-gray-700 text-sm font-medium mb-2">
+          <label className="block text-white text-sm font-medium mb-2">
             Tell AI what you want to accomplish:
           </label>
           <input 
             type="text" 
             value={userInput}
             onChange={(e) => setUserInput(e.target.value)}
-            className="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:border-green-500 focus:outline-none transition-colors duration-200"
+            className="w-full bg-white border border-white rounded-lg px-4 py-3 text-white placeholder-white focus:border-cyan-500 focus:outline-none transition-colors duration-200"
             placeholder="e.g., Prepare for product launch next month"
             readOnly
           />
@@ -73,7 +73,7 @@ const AIDemo = () => {
         <button 
           onClick={processTask}
           disabled={isProcessing}
-          className="w-full bg-green-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-500/90 transform hover:scale-[1.02] transition-all duration-200 disabled:opacity-50 flex items-center justify-center space-x-2"
+          className="w-full bg-cyan-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-cyan-500/90 transform hover:scale-[1.02] transition-all duration-200 disabled:opacity-50 flex items-center justify-center space-x-2"
         >
           {isProcessing ? (
             <>
@@ -90,30 +90,30 @@ const AIDemo = () => {
         
         {aiResponse && (
           <div className="mt-6 space-y-3">
-            <h4 className="text-gray-900 font-semibold flex items-center">
-              <CheckCircle className="w-4 h-4 text-green-500 mr-2" />
+            <h4 className="text-white font-semibold flex items-center">
+              <CheckCircle className="w-4 h-4 text-cyan-500 mr-2" />
               AI Generated Breakdown:
             </h4>
             {aiResponse.breakdown.map((item, index) => (
-              <div key={index} className="bg-white rounded-lg p-4 border border-gray-200">
+              <div key={index} className="bg-white rounded-lg p-4 border border-white">
                 <div className="flex justify-between items-start mb-2">
-                  <span className="text-gray-900 font-medium">{item.task}</span>
+                  <span className="text-white font-medium">{item.task}</span>
                   <span className={`px-2 py-1 rounded text-xs font-medium ${
                     item.priority === 'High' ? 'bg-red-100 text-red-700' :
                     item.priority === 'Medium' ? 'bg-yellow-100 text-yellow-700' :
-                    'bg-green-100 text-green-700'
+                    'bg-cyan-100 text-cyan-700'
                   }`}>
                     {item.priority}
                   </span>
                 </div>
                 <div className="flex items-center space-x-4 text-sm">
-                  <div className="flex items-center text-gray-600">
+                  <div className="flex items-center text-white">
                     <Calendar className="w-3 h-3 mr-1" />
                     {item.deadline}
                   </div>
                   <div className="flex items-center space-x-1">
                     {item.tags.map((tag, tagIndex) => (
-                      <span key={tagIndex} className="bg-green-500/10 text-green-500 px-2 py-1 rounded text-xs">
+                      <span key={tagIndex} className="bg-cyan-500/10 text-cyan-500 px-2 py-1 rounded text-xs">
                         #{tag}
                       </span>
                     ))}
@@ -247,26 +247,26 @@ const LandingPage = () => {
       
       {/* Hero Section */}
       <section className="relative pt-20 pb-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 via-transparent to-green-500/5"></div>
-        <div className="absolute top-20 left-20 w-72 h-72 bg-green-500/5 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-20 w-96 h-96 bg-green-500/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-cyan-500/5"></div>
+        <div className="absolute top-20 left-20 w-72 h-72 bg-cyan-500/5 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-20 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
           <div className="text-center">
-            <div className="inline-flex items-center bg-green-500/10 border border-green-500/30 rounded-full px-6 py-2 mb-8">
-              <Zap className="w-4 h-4 text-green-500 mr-2" />
-              <span className="text-green-500 font-medium text-sm">Powered by Advanced AI</span>
+            <div className="inline-flex items-center bg-cyan-500/10 border border-cyan-500/30 rounded-full px-6 py-2 mb-8">
+              <Zap className="w-4 h-4 text-cyan-500 mr-2" />
+              <span className="text-cyan-500 font-medium text-sm">Powered by Advanced AI</span>
             </div>
             
-            <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
               AI That Manages
-              <span className="block text-green-500">
+              <span className="block text-cyan-500">
                 Your Tasks
               </span>
-              <span className="block text-gray-900">Intelligently</span>
+              <span className="block text-white">Intelligently</span>
             </h1>
             
-            <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl text-white mb-8 max-w-4xl mx-auto leading-relaxed">
               Just tell our AI what you want to accomplish, and watch as it automatically breaks down complex projects, 
               prioritizes tasks, schedules deadlines, and learns from your behavior to boost productivity.
             </p>
@@ -281,17 +281,17 @@ const LandingPage = () => {
                     key={index}
                     className={`p-6 rounded-2xl border transition-all duration-500 transform hover:scale-105 ${
                       currentFeature === index 
-                        ? 'bg-green-500/10 border-green-500 shadow-lg shadow-green-500/20' 
-                        : 'bg-gray-50 border-gray-200 hover:border-green-500/50'
+                        ? 'bg-cyan-500/10 border-cyan-500 shadow-lg shadow-cyan-500/20' 
+                        : 'bg-whiteborder-white hover:border-cyan-500/50'
                     }`}
                   >
                     <Icon className={`w-8 h-8 mb-4 mx-auto transition-colors duration-300 ${
-                      currentFeature === index ? 'text-green-500' : 'text-gray-400'
+                      currentFeature === index ? 'text-cyan-500' : 'text-white'
                     }`} />
-                    <h3 className="text-gray-900 font-semibold mb-2 text-sm">{feature.title}</h3>
-                    <p className="text-gray-600 text-xs mb-3">{feature.desc}</p>
+                    <h3 className="text-white font-semibold mb-2 text-sm">{feature.title}</h3>
+                    <p className="text-white text-xs mb-3">{feature.desc}</p>
                     <div className={`text-xs italic transition-colors duration-300 ${
-                      currentFeature === index ? 'text-green-500' : 'text-gray-400'
+                      currentFeature === index ? 'text-cyan-500' : 'text-white'
                     }`}>
                       {feature.example}
                     </div>
@@ -304,13 +304,13 @@ const LandingPage = () => {
       </section>
 
       {/* AI Demo Section */}
-      <section id="demo" className="py-20 bg-gradient-to-r from-green-500/5 to-transparent">
+      <section id="demo" className="py-20 bg-gradient-to-r from-cyan-500/5 to-transparent">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div id="demo-header" data-scroll-animate className={`text-center mb-12 ${visibleSections['demo-header'] ? 'animate-fade-in-up' : 'opacity-0 translate-y-8'}`}>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
               See AI in Action
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-white">
               Experience how our AI breaks down your tasks intelligently
             </p>
           </div>
@@ -322,13 +322,13 @@ const LandingPage = () => {
 
 
       {/* AI Features Detail */}
-      <section id="features" className="py-20 bg-gradient-to-br from-green-500/5 to-green-500/5">
+      <section id="features" className="py-20 bg-gradient-to-br from-cyan-500/5 to-cyan-500/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div id="features-header" data-scroll-animate className={`text-center mb-16 ${visibleSections['features-header'] ? 'animate-fade-in-up' : 'opacity-0 translate-y-8'}`}>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
               AI-Powered Features
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-white">
               Discover how AI transforms your task management experience
             </p>
           </div>
@@ -336,24 +336,24 @@ const LandingPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div id="features-left" data-scroll-animate className={`space-y-8 ${visibleSections['features-left'] ? 'animate-fade-in-left' : 'opacity-0 translate-x-[-30px]'}`}>
               <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-green-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Brain className="w-6 h-6 text-green-500" />
+                <div className="w-12 h-12 bg-cyan-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <Brain className="w-6 h-6 text-cyan-500" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Smart Task Breakdown</h3>
-                  <p className="text-gray-600">
+                  <h3 className="text-xl font-semibold text-white mb-2">Smart Task Breakdown</h3>
+                  <p className="text-white">
                     Simply describe your goal and watch AI automatically break it into actionable subtasks with optimal sequencing.
                   </p>
                 </div>
               </div>
               
               <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-green-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Target className="w-6 h-6 text-green-500" />
+                <div className="w-12 h-12 bg-cyan-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <Target className="w-6 h-6 text-cyan-500" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Intelligent Prioritization</h3>
-                  <p className="text-gray-600">
+                  <h3 className="text-xl font-semibold text-white mb-2">Intelligent Prioritization</h3>
+                  <p className="text-white">
                     AI analyzes task language, deadlines, and your past behavior to automatically assign priority levels.
                   </p>
                 </div>
@@ -362,24 +362,24 @@ const LandingPage = () => {
             
             <div id="features-right" data-scroll-animate className={`space-y-8 ${visibleSections['features-right'] ? 'animate-fade-in-right' : 'opacity-0 translate-x-[30px]'}`}>
               <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-green-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Calendar className="w-6 h-6 text-green-500" />
+                <div className="w-12 h-12 bg-cyan-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <Calendar className="w-6 h-6 text-cyan-500" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Smart Scheduling</h3>
-                  <p className="text-gray-600">
+                  <h3 className="text-xl font-semibold text-white mb-2">Smart Scheduling</h3>
+                  <p className="text-white">
                     AI schedules each subtask based on your calendar, workload, and optimal productivity patterns.
                   </p>
                 </div>
               </div>
               
               <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-green-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Tag className="w-6 h-6 text-green-500" />
+                <div className="w-12 h-12 bg-cyan-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <Tag className="w-6 h-6 text-cyan-500" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Auto-Tagging & Deadlines</h3>
-                  <p className="text-gray-600">
+                  <h3 className="text-xl font-semibold text-white mb-2">Auto-Tagging & Deadlines</h3>
+                  <p className="text-white">
                     AI automatically suggests relevant tags and realistic deadlines based on task context and complexity.
                   </p>
                 </div>

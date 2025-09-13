@@ -117,7 +117,7 @@ const BuyTicket = () => {
         showTime: selectedShowTime,
         seatNumber: selectedSeat,
         price: selectedMovie.price,
-        buyerId: user.id
+        buyerId: user.userId
       });
 
       setMessage('Ticket booked successfully! 🎉');

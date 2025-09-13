@@ -41,44 +41,45 @@ const UserSideBar = () => {
     }
   };
 
-  const menuItems = [
-    {
-      icon: Home,
-      label: 'Movies',
-      path: '/user/home',
-      description: 'get a new ticket'
-    },
-    {
-      icon: Plus,
-      label: 'Current bookings',
-      path: '..',
-      description: 'check your bookings'
-    },
-    {
-      icon: Plus,
-      label: 'Buy a sold ticket',
-      path: '..',
-      description: 'get discounted tickets'
-    },
-    {
-      icon: BarChart3,
-      label: 'Transfer tickets',
-      path: '..',
-      description: 'sell your tickets to someone needy'
-    },
-    {
-      icon: MessageSquare,
-      label: 'Purchase history',
-      path: '..',
-      description: 'Share feedback'
-    },
-    {
-      icon: User,
-      label: 'Profile',
-      path: '/user/profile',
-      description: 'Manage account'
-    }
-  ];
+ const menuItems = [
+  {
+    icon: Home,
+    label: 'Movies',
+    path: '/user/home',
+    description: 'Get a new ticket'
+  },
+  {
+    icon: Plus,
+    label: 'My Tickets',
+    path: '/user/MyTickets',
+    description: 'Check your current bookings'
+  },
+  {
+    icon: Plus,
+    label: 'Resale Tickets',
+    path: '/user/ResaleTickets',
+    description: 'Buy tickets listed for resale'
+  },
+  {
+    icon: BarChart3,
+    label: 'My Selling',
+    path: '/user/MySelling',
+    description: 'Sell or transfer your tickets'
+  },
+  {
+    icon: MessageSquare,
+    label: 'Purchase History',
+    path: '/user/history', // you don’t have this route yet, can add later
+    description: 'View your past purchases & feedback'
+  },
+  {
+    icon: User,
+    label: 'Profile',
+    path: '/user/profile',
+    description: 'Manage your account'
+  }
+];
+
 
   const isActivePath = (path) => location.pathname === path;
 

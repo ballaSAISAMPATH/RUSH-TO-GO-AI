@@ -21,16 +21,16 @@ const TaskLayout = () => {
       <UserSideBar isOpen={isSidebarOpen} closeSidebar={closeSidebar} />
       
       <main className="md:ml-64 pt-16 min-h-screen transition-all duration-300">
-          <div className="max-w-full mx-auto">
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-              <div className="absolute top-20 right-10 w-32 h-32 bg-green-500 rounded-full blur-3xl"></div>
-              <div className="absolute bottom-20 left-10 w-40 h-40 bg-[#8FE877] rounded-full blur-3xl"></div>
-            </div>
-            
-            <div className="relative z-10">
-              <Outlet />
-            </div>
+        <div className="w-full">
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <div className="absolute top-20 right-10 w-32 h-32 bg-green-500/5 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-20 left-10 w-40 h-40 bg-[#8FE877]/5 rounded-full blur-3xl"></div>
           </div>
+          
+          <div className="relative z-10 w-full">
+            <Outlet />
+          </div>
+        </div>
       </main>
       
       <div 

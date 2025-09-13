@@ -22,6 +22,7 @@ import { useAuthInitialize } from './utilities/hooks/useAuthInitialize';
 import ForgotPassword from './pages/auth/ForgotPassword';
 import ChangePassword from './pages/auth/ChangePassword';
 import AdminDashBoard from './pages/AdminPages/AdminDashBoard';
+import BuyTicket from './pages/UserPages/BuyTicket';
 const App = () => {
   const { isLoading: authInitLoading } = useAuthInitialize();
   const { user, isAuthenticated, isLoading } = useSelector((state) => state.auth);
@@ -45,7 +46,7 @@ const App = () => {
             <Route path='change-password' element={<ChangePassword/>}/>
           </Route>
           <Route path="/user" element={<TaskLayout />}>
-            <Route path='home' element={<UserHome/>} />
+            <Route path='home' element={<BuyTicket/>} />
             <Route path='profile' element={<UserProfile/>} />
             <Route path='set-new-password' element={<SetNewPassword/>} />
             </Route>

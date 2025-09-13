@@ -13,6 +13,8 @@ const ResaleTickets = () => {
   const fetchResaleTickets = async () => {
     try {
       const response = await axios.get('http://localhost:5000/api/ticket/resale');
+      console.log(response.data);
+      
       const filteredTickets = response.data.filter(ticket => ticket.seller._id !== user.id);
       setResaleTickets(filteredTickets);
     } catch (error) {

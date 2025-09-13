@@ -1,4 +1,4 @@
-const MovieTicket = require('../models/MovieTicket');
+const MovieTicket = require('../models/movieTicketSchema');
 const User = require('../models/User');
 
 // Get all available movies with static data
@@ -274,11 +274,13 @@ const listTicketForResale = async (req, res) => {
 
 // Get all resale tickets
 const getResaleTickets = async (req, res) => {
+  console.log("here");
+  
   try {
     const tickets = await MovieTicket.find({
       isForSale: true,
       status: 'available',
-      showTime: { $gt: new Date() } // Only future shows
+      // showTime: { $gt: new Date() } 
     }).populate('seller', 'name email');
 
     res.json(tickets);

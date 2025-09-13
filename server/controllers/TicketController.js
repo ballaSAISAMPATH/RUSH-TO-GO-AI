@@ -1,4 +1,4 @@
-const MovieTicket = require('../models/movieTicketSchema');
+const MovieTicket = require('../models/MovieTicket');
 const User = require('../models/User');
 
 // Get all available movies with static data
@@ -350,6 +350,7 @@ const removeFromSale = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
 // Get user's sold tickets (tickets sold to others)
 const getUserSoldTickets = async (req, res) => {
   try {
@@ -366,6 +367,7 @@ const getUserSoldTickets = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
 module.exports = {
   getAvailableMovies,
   bookTicket,

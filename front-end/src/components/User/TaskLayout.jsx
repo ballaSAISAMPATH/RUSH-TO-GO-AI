@@ -16,6 +16,7 @@ const TaskLayout = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-500 via-white to-green-50/30">
+    <div className="min-h-screen bg-gradient-to-br from-blue-500 via-white to-green-50/30">
       <UserHeader toggleSidebar={toggleSidebar} />
       
       <UserSideBar isOpen={isSidebarOpen} closeSidebar={closeSidebar} />
@@ -34,6 +35,7 @@ const TaskLayout = () => {
       </main>
       
       <div 
+        className={`md:hidden fixed inset-0 bg-green-300 backdrop-blur-sm z-30 transition-opacity duration-300 ${
         className={`md:hidden fixed inset-0 bg-green-300 backdrop-blur-sm z-30 transition-opacity duration-300 ${
           isSidebarOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}

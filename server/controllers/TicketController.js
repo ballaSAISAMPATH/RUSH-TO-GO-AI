@@ -270,9 +270,7 @@ const listTicketForResale = async (req, res) => {
 };
 
 // Get all resale tickets
-const getResaleTickets = async (req, res) => {
-  console.log("here");
-  
+const getResaleTickets = async (req, res) => {  
   try {
     const tickets = await MovieTicket.find({
       isForSale: true,

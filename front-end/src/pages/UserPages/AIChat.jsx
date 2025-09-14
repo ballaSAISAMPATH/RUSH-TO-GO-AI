@@ -54,9 +54,9 @@ export default function AIChatUI() {
   );
 
   return (
-    <div className="flex flex-col h-screen bg-black text-gray-200">
+    <div className="flex flex-col h-223 w-full bg-gray-950 text-gray-200">
       {/* Header */}
-      <div className="flex items-center justify-between p-4 bg-gray-900 border-b border-gray-800 shadow-lg">
+      <div className="flex items-center justify-between p-4 bg-gray-900 border-b border-gray-800 shadow-lg min-h-0">
         <h1 className="text-2xl font-bold text-white flex items-center gap-2">
           <Bot size={28} className="text-cyan-500" />
           AI Chat
@@ -71,23 +71,21 @@ export default function AIChatUI() {
       </div>
 
       {/* Message History */}
-<div className="flex-1 overflow-y-auto p-6">
-  <div className="flex flex-col justify-end space-y-4 min-h-full">
-    {messages.length === 0 ? (
-      <div className="flex items-center justify-center h-full text-center text-gray-500 text-lg">
-        Start a conversation with the AI assistant.
+      <div className="flex-1 overflow-y-auto p-6 space-y-4 min-h-0">
+        {messages.length === 0 ? (
+          <div className="flex items-center justify-center h-full text-center text-gray-500 text-lg">
+            Start a conversation with the AI assistant.
+          </div>
+        ) : (
+          messages.map((msg, index) => (
+            <Message key={index} text={msg.text} sender={msg.sender} />
+          ))
+        )}
+        <div ref={chatEndRef} />
       </div>
-    ) : (
-      messages.map((msg, index) => (
-        <Message key={index} text={msg.text} sender={msg.sender} />
-      ))
-    )}
-    <div ref={chatEndRef} />
-  </div>
-</div>
 
       {/* Input Field */}
-      <div className="p-4 bg-black border-t border-gray-800 shadow-lg">
+      <div className="p-4 bg-gray-900 border-t border-gray-800 shadow-lg min-h-0">
         <form className="flex gap-4" onSubmit={chatFormSubmitted}>
           <textarea
             onInput={(e) => {

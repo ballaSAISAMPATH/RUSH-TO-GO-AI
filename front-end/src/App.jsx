@@ -28,6 +28,7 @@ import SellTicket from './pages/UserPages/SellTicket';
 import ResaleTickets from './pages/UserPages/ResaleTickets';
 import CurrentlySelling from './pages/UserPages/CurrentlySelling';
 import SoldTickets from './pages/UserPages/SoldTickets';
+import AIChat from './pages/UserPages/AIChat';
 const App = () => {
   const { isLoading: authInitLoading } = useAuthInitialize();
   const { user, isAuthenticated, isLoading } = useSelector((state) => state.auth);
@@ -53,6 +54,7 @@ const App = () => {
           </Route>
           <Route path="/user" element={<TaskLayout />}>
             <Route path='home' element={<BookTicket/>} />
+            <Route path='AIChat' element={<AIChat/>} />
             <Route path='profile' element={<UserProfile/>} />
             <Route path='set-new-password' element={<SetNewPassword/>} />
             <Route path='SellTicket' element={<SellTicket/>}/>

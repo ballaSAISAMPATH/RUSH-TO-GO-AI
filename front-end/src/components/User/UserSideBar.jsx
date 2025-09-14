@@ -83,7 +83,13 @@ const menuItems = [
     label: 'Profile',
     path: '/user/profile',
     description: 'Manage account'
-  }
+  },
+  {
+    icon: User,
+    label: 'AI assistant',
+    path: '/user/AIChat',
+    description: 'Chat with AI'
+  },
 ];
 
 
